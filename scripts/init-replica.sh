@@ -12,7 +12,7 @@ if [ -f .env ]; then
     if [[ "$line" =~ ^([A-Za-z_][A-Za-z0-9_]*)=(.*)$ ]]; then
       KEY="${BASH_REMATCH[1]}"
       VALUE="${BASH_REMATCH[2]}"
-      export "$KEY=$VALUE"
+      export "$KEY"="$VALUE"
     fi
   done < .env
 else
