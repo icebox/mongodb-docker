@@ -3,7 +3,18 @@ set -euo pipefail
 
 # Load env vars
 if [ -f .env ]; then
-  export $(grep -v '^#' .env | xargs)
+  while IFS= read -r line; do
+    # Ignore comments and empty lines
+    if [[ "$line" =~ ^[[:space:]]*$ ]] || [[ "$line" =~ ^[[:space:]]*# ]]; then
+      continue
+    fi
+    # Only process lines with KEY=VALUE
+    if [[ "$line" =~ ^([A-Za-z_][A-Za-z0-9_]*)=(.*)$ ]]; then
+      KEY="${BASH_REMATCH[1]}"
+      VALUE="${BASH_REMATCH[2]}"
+      export "$KEY=$VALUE"
+    fi
+  done < .env
 else
   echo "ERROR: .env file not found!"
   exit 1
