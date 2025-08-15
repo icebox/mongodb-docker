@@ -76,6 +76,56 @@ This:
   - Initiates replica set
   - Creates root + app user
 
+
+NOTE: `00-replica-init.js` script might fail if it tries to run before Mongo is ready to receive connections. If that happens, follow the steps below: 
+
+### 2b. Init Replica set
+
+Start the container 
+
+```
+docker compose up -d
+```
+
+Then run the `init-replica.sh` script
+
+```
+./scripts/init-replica.sh
+```
+
+OR: 
+
+### 2c. Manually initialize
+
+Run this inside the container, as root user:
+
+```
+docker exec -it mongo-boilerplate mongosh -u mongo -p --authenticationDatabase admin
+```
+
+Then at the mongosh prompt:
+```
+rs.initiate({
+  _id: 'rs0',
+  members: [{ _id: 0, host: 'localhost:27017' }]
+})
+```
+
+Then check:
+```
+rs.status()
+```
+
+myState should be 1 for PRIMARY.
+
+Once this is done, try again from host:
+
+```
+mongosh "mongodb://mongo:<your_password>@localhost:27017/appdb?authSource=admin&replicaSet=rs0"
+```
+
+It should connect instantly.
+
 ---
 
 ## Common Workflows
@@ -203,7 +253,7 @@ mongosh "mongodb://appuser:super_secret_password_change_me@localhost:27017/appdb
 **Test connection:**
 
 ```bash
-docker exec -it mongodb-dev mongosh \
+docker exec -it mongo-boilerplate mongosh \
   -u mongo \
   -p \
   --authenticationDatabase admin \
