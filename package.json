@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "seed:local": "node scripts/seed.js local",
+    "seed:atlas": "node scripts/seed.js atlas",
+    "backup:local": "node scripts/backup.js local",
+    "backup:atlas": "node scripts/backup.js atlas",
+    "restore:local": "node scripts/restore.js local",
+    "restore:atlas": "node scripts/restore.js atlas"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mongodb": "^6.6.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

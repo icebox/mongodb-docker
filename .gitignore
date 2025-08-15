@@ -1,0 +1,23 @@
+secrets
+logs
+data
+docker_data/
+*.env
+*.log
+*.pid
+*.sock
+.DS_Store
+node_modules
+npm-debug.log*
+yarn-error.log*
+.vscode
+.idea
+coverage
+.env.local
+.env.*.local
+*.swp
+*~
+# Ignore Mac system files
+.DS_Store
+.AppleDouble
+.LSOverride
