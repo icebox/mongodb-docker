@@ -1,4 +1,4 @@
-# Dev MongoDB Setup (Docker + Replica Set + Auth)
+# MongoDB (Docker + Replica Set + Auth)
 
 This project sets up a **MongoDB 8.0.x** instance in Docker for local development with:
 
