@@ -1,16 +1,43 @@
-*.log
-*.pid
-*.seed
-*.pid.lock
-.env.local
-.env.*.local
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+secrets
+
+# Ignore Git
 .git
 .gitignore
-README.md
+
+# Node / JS (if added later)
+node_modules
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# Logs
+*.log
+logs
+
+# Local env
+.env
+.env.*
+
+# OS junk
 .DS_Store
-init-mongo.js.template
-generate-init-script.sh
+Thumbs.db
+
+# Editor junk
+.vscode
+.idea
+*.code-workspace
+
+# Backups
+backups
+*.rdb
+*.aof
+*.tar
+*.gz
+*.zip
+
+# Don’t include README/docs into images
+README.md
+*.md
+
+# Docker-compose files (not needed inside images)
+docker-compose*.yml
